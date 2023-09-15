@@ -14,13 +14,14 @@ import net.dv8tion.jda.api.requests.GatewayIntent;
 
 public class Main {
     public static void main(String[] args) {
+
         Dotenv dotenv = Dotenv.configure()
-                .filename(".env")
-                .directory("src/main/java/resources")
+                .directory("src/main/resources")
+                .filename("env")
                 .load();
 
 
-        JDA jda = JDABuilder.createDefault(Dotenv.load().get("TOKEN"))
+        JDA jda = JDABuilder.createDefault(dotenv.get("TOKEN"))
                 .addEventListeners(new MessageEvent(), new ReportCommand(), new UnterbrechenCommand(), new RemoveLastMessageCommand())
                 .setActivity(Activity.playing("OneWord"))
                 .setStatus(OnlineStatus.ONLINE)
