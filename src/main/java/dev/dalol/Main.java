@@ -33,5 +33,7 @@ public class Main {
         jda.upsertCommand("unterbrechen", "Unterbricht die Wörter-Reihe")
                 .addOption(OptionType.STRING, "grund", "Gebe einen Grund dazu", true)
                 .queue();
+
+        jda.upsertCommand("removelastmessage", "Lösche die zuletzt gelöschte Nachricht vom Kanal & System").queue();
     }
 }
