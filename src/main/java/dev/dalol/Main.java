@@ -1,5 +1,6 @@
 package dev.dalol;
 
+import dev.dalol.commands.RemoveLastMessageCommand;
 import dev.dalol.commands.ReportCommand;
 import dev.dalol.commands.UnterbrechenCommand;
 import dev.dalol.listener.MessageEvent;
@@ -20,7 +21,7 @@ public class Main {
 
 
         JDA jda = JDABuilder.createDefault(Dotenv.load().get("TOKEN"))
-                .addEventListeners(new MessageEvent(), new ReportCommand(), new UnterbrechenCommand())
+                .addEventListeners(new MessageEvent(), new ReportCommand(), new UnterbrechenCommand(), new RemoveLastMessageCommand())
                 .setActivity(Activity.playing("OneWord"))
                 .setStatus(OnlineStatus.ONLINE)
                 .enableIntents(GatewayIntent.MESSAGE_CONTENT)

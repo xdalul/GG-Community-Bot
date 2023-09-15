@@ -13,6 +13,8 @@ public class MessageEvent extends ListenerAdapter {
     public static List<String> words = new ArrayList<>();
     public static int currentIndex = 0;
     public static String lastWord = "";
+    public static String lastMessage = "";
+    public static String getId = "";
 
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
@@ -56,7 +58,9 @@ public class MessageEvent extends ListenerAdapter {
             String[] wordsToAdd = messageContent.split("\\s+");
             if (wordsToAdd.length == 1) {
                 if (currentIndex < event.getMember().getUser().getIdLong()) {
+                    lastMessage = messageContent;
                     words.add(messageContent);
+                    getId = event.getChannel().getLatestMessageId();
                     currentIndex = (int) event.getMember().getUser().getIdLong();
                 } if (currentIndex > event.getMember().getUser().getIdLong()) {
                     event.getChannel().sendMessage("Test").queue();
