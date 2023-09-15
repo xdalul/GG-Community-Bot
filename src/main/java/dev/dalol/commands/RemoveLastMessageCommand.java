@@ -13,7 +13,6 @@ public class RemoveLastMessageCommand extends ListenerAdapter {
             if (event.getMember().hasPermission(Permission.ADMINISTRATOR)) {
                 MessageEvent.words.remove(MessageEvent.lastMessage);
                 MessageEvent.lastMessage = "";
-                event.getGuild().getTextChannelById("1151867308789211166").deleteMessageById(MessageEvent.getId).queue();
                 event.reply("**Erfolgreich!**").setEphemeral(true).queue();
             }
         }

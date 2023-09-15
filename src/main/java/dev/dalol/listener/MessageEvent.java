@@ -60,7 +60,6 @@ public class MessageEvent extends ListenerAdapter {
                 if (currentIndex < event.getMember().getUser().getIdLong()) {
                     lastMessage = messageContent;
                     words.add(messageContent);
-                    getId = event.getChannel().getLatestMessageId();
                     currentIndex = (int) event.getMember().getUser().getIdLong();
                 } if (currentIndex > event.getMember().getUser().getIdLong()) {
                     event.getChannel().sendMessage("Test").queue();
