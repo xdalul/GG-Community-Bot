@@ -5,7 +5,6 @@ import dev.dalol.commands.RemoveLastMessageCommand;
 import dev.dalol.commands.ReportCommand;
 import dev.dalol.commands.UnterbrechenCommand;
 import dev.dalol.listener.MessageEvent;
-import dev.dalol.util.PrivateStrings;
 import io.github.cdimascio.dotenv.Dotenv;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
@@ -17,9 +16,12 @@ import net.dv8tion.jda.api.requests.GatewayIntent;
 public class Main {
     public static void main(String[] args) {
 
+        Dotenv dotenv = Dotenv.configure()
+                .filename("env")
+                .directory("src/main/resources")
+                .load();
 
-
-        JDA jda = JDABuilder.createDefault(PrivateStrings.getToken)
+        JDA jda = JDABuilder.createDefault(dotenv.get("TOKEN"))
                 .addEventListeners(new MessageEvent(), new ReportCommand(), new UnterbrechenCommand(), new RemoveLastMessageCommand(), new HelpCommand())
                 .setActivity(Activity.playing("OneWord"))
                 .setStatus(OnlineStatus.ONLINE)
