@@ -19,7 +19,7 @@ public class UnterbrechenCommand extends ListenerAdapter {
                 EmbedBuilder builder = new EmbedBuilder();
 
                 builder.setTitle("`📛` Die Wörter Reihe wurde unterbrochen!");
-                builder.setDescription(event.getMember().getAsMention() + " hast die Wörter Reihe unterbrochen. Grund » **" + getGrund + "**");
+                builder.setDescription(event.getMember().getAsMention() + " hat die Wörter Reihe unterbrochen. Grund » **" + getGrund + "**");
                 builder.setFooter("GG-Community");
                 builder.setTimestamp(Instant.now());
                 builder.setColor(0xf55142);

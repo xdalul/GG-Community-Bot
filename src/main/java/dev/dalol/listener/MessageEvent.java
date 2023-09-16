@@ -19,7 +19,7 @@ public class MessageEvent extends ListenerAdapter {
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
 
-        if (!event.getChannel().getId().equals("1151938627811688648")) return;
+        if (!event.getChannel().getId().equals("1151867308789211166")) return;
         if (event.getAuthor().isBot()) return;
 
         String messageContent = event.getMessage().getContentRaw();
@@ -30,10 +30,12 @@ public class MessageEvent extends ListenerAdapter {
                 words.add(lastWord);
                 String sentence = String.join(" ", words);
 
+                System.out.println("[DEBUG] " + sentence);
+
                 EmbedBuilder builder = new EmbedBuilder();
 
                 builder.setTitle("`👀` Euer Satz ist vollendet!");
-                builder.setDescription("Mal sehen was ihr veranstaltet habt:\n\n**" + sentence + "**");
+                builder.setDescription("Mal sehen was ihr veranstaltet habt:\n\n**" + sentence + "**\n\n*Bitte hier drunter einen Thread erstellen, falls ihr euch über den Satz lustig machen wollt...*");
                 builder.setFooter("GG-Community");
                 builder.setTimestamp(Instant.now());
                 builder.setColor(0x8dfc32);
@@ -51,6 +53,7 @@ public class MessageEvent extends ListenerAdapter {
                 builder.setFooter("GG-Community");
                 builder.setColor(0xf55142);
                 builder.setTimestamp(Instant.now());
+                System.out.println(event.getMember().getEffectiveName() + "hat vor 8 Wörtern bereits versucht, einen Satz zu vervollständingen - " + event.getMessage().getContentRaw());
 
                 event.getChannel().sendMessageEmbeds(builder.build()).addContent(event.getMember().getAsMention()).queue();
             }
@@ -60,6 +63,7 @@ public class MessageEvent extends ListenerAdapter {
                 if (currentIndex < event.getMember().getUser().getIdLong()) {
                     lastMessage = messageContent;
                     words.add(messageContent);
+                    System.out.println(event.getMember().getEffectiveName() + " - " + messageContent);
                     currentIndex = (int) event.getMember().getUser().getIdLong();
                 } if (currentIndex > event.getMember().getUser().getIdLong()) {
                     event.getChannel().sendMessage("Test").queue();
@@ -73,6 +77,8 @@ public class MessageEvent extends ListenerAdapter {
                 builder.setColor(0xfa8d28);
                 builder.setFooter("GG-Community");
                 builder.setTimestamp(Instant.now());
+
+                System.out.println(event.getMember().getEffectiveName() + " hat versucht mehr als ein Wort zu schreiben - " + messageContent);
 
                 event.getChannel().sendMessageEmbeds(builder.build()).addContent(event.getMember().getAsMention()).queue();
             }

@@ -16,12 +16,8 @@ import net.dv8tion.jda.api.requests.GatewayIntent;
 public class Main {
     public static void main(String[] args) {
 
-        Dotenv dotenv = Dotenv.configure()
-                .filename("env")
-                .directory("src/main/resources")
-                .load();
 
-        JDA jda = JDABuilder.createDefault(dotenv.get("TOKEN"))
+        JDA jda = JDABuilder.createDefault("")
                 .addEventListeners(new MessageEvent(), new ReportCommand(), new UnterbrechenCommand(), new RemoveLastMessageCommand(), new HelpCommand())
                 .setActivity(Activity.playing("OneWord"))
                 .setStatus(OnlineStatus.ONLINE)
