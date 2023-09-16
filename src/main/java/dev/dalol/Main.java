@@ -5,6 +5,7 @@ import dev.dalol.commands.RemoveLastMessageCommand;
 import dev.dalol.commands.ReportCommand;
 import dev.dalol.commands.UnterbrechenCommand;
 import dev.dalol.listener.MessageEvent;
+import dev.dalol.util.PrivateStrings;
 import io.github.cdimascio.dotenv.Dotenv;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
@@ -18,7 +19,7 @@ public class Main {
 
 
 
-        JDA jda = JDABuilder.createDefault(dotenv.get("TOKEN"))
+        JDA jda = JDABuilder.createDefault(PrivateStrings.getToken)
                 .addEventListeners(new MessageEvent(), new ReportCommand(), new UnterbrechenCommand(), new RemoveLastMessageCommand(), new HelpCommand())
                 .setActivity(Activity.playing("OneWord"))
                 .setStatus(OnlineStatus.ONLINE)
