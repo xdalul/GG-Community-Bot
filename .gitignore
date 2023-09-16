@@ -38,4 +38,4 @@ build/
 .DS_Store
 
 ### .env File ###
-src/main/java/dev/dalol/util/PrivateStrings.java
+src/main/java/dev/dalol/util
