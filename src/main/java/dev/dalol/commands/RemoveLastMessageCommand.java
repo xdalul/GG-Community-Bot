@@ -12,8 +12,10 @@ public class RemoveLastMessageCommand extends ListenerAdapter {
         if (event.getName().equals("removelastmessage")) {
             if (event.getMember().hasPermission(Permission.ADMINISTRATOR)) {
                 MessageEvent.words.remove(MessageEvent.lastMessage);
+                event.reply("**Erfolgreich aus dem System entfernt: **" + MessageEvent.lastMessage).setEphemeral(true).queue();
                 MessageEvent.lastMessage = "";
-                event.reply("**Erfolgreich!**").setEphemeral(true).queue();
+            } else {
+                event.reply("Du hast keine Berechtigung dafür!").setEphemeral(true).queue();
             }
         }
     }

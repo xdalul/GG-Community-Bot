@@ -13,16 +13,26 @@ import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.interactions.commands.OptionType;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class Main {
+    private static String[] messages = {"OneWord","/help","& mehr"};
+    private static int currentIndex = 0;
     public static void main(String[] args) {
 
 
         JDA jda = JDABuilder.createDefault("")
                 .addEventListeners(new MessageEvent(), new ReportCommand(), new UnterbrechenCommand(), new RemoveLastMessageCommand(), new HelpCommand())
-                .setActivity(Activity.playing("OneWord"))
                 .setStatus(OnlineStatus.ONLINE)
                 .enableIntents(GatewayIntent.MESSAGE_CONTENT)
                 .build();
+        new Timer().schedule(new TimerTask(){
+            public void run(){
+                jda.getPresence().setActivity(Activity.playing(messages[currentIndex]));
+                currentIndex=(currentIndex+1)%messages.length;
+            }},0,3_000);
+
 
         jda.upsertCommand("report", "Melde einen Fehler.")
                 .addOption(OptionType.STRING, "fehler", "Den Fehler den du gefunden hast.", true)

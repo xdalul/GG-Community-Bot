@@ -25,7 +25,7 @@ public class MessageEvent extends ListenerAdapter {
         String messageContent = event.getMessage().getContentRaw();
 
         if (messageContent.contains(".")) {
-            if (words.size() > 8) {
+            if (words.size() > 7) {
                 lastWord = messageContent;
                 words.add(lastWord);
                 String sentence = String.join(" ", words);
