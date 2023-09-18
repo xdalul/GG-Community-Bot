@@ -1,4 +1,4 @@
-package dev.dalol.commands;
+package dev.dalol.commands.öffentlich;
 
 import net.dv8tion.jda.api.entities.channel.Channel;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;

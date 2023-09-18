@@ -1,4 +1,4 @@
-package dev.dalol.commands;
+package dev.dalol.commands.admin;
 
 import dev.dalol.listener.MessageEvent;
 import net.dv8tion.jda.api.EmbedBuilder;

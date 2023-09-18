@@ -1,4 +1,4 @@
-package dev.dalol.commands;
+package dev.dalol.commands.öffentlich;
 
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Member;

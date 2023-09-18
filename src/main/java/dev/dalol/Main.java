@@ -1,11 +1,10 @@
 package dev.dalol;
 
-import dev.dalol.commands.HelpCommand;
-import dev.dalol.commands.RemoveLastMessageCommand;
-import dev.dalol.commands.ReportCommand;
-import dev.dalol.commands.UnterbrechenCommand;
+import dev.dalol.commands.öffentlich.HelpCommand;
+import dev.dalol.commands.admin.RemoveLastMessageCommand;
+import dev.dalol.commands.öffentlich.ReportCommand;
+import dev.dalol.commands.admin.UnterbrechenCommand;
 import dev.dalol.listener.MessageEvent;
-import io.github.cdimascio.dotenv.Dotenv;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.OnlineStatus;
@@ -45,5 +44,24 @@ public class Main {
         jda.upsertCommand("removelastmessage", "Lösche die zuletzt gelöschte Nachricht vom Kanal & System").queue();
 
         jda.upsertCommand("help", "Hilfe zu OneWord.").queue();
+        jda.upsertCommand("addrole", "Füge eine Rolle zu einen User hinzu.")
+                .addOption(OptionType.USER, "nutzer", "Der User, der eine Rolle hinzugefügt bekommen soll.", true)
+                .addOption(OptionType.ROLE, "rolle", "Die rolle die du dem User geben möchtest.", true)
+                .queue();
+        jda.upsertCommand("removerole", "Entferne eine Rolle von einem User.")
+                .addOption(OptionType.USER, "nutzer", "Der User, der eine Rolle entfernt bekommen soll.", true)
+                .addOption(OptionType.ROLE, "rolle", "Die Rolle die du dem User entfernen möchtest.", true)
+                .queue();
+        jda.upsertCommand("instantban", "Banne einen User.")
+                .addOption(OptionType.USER, "nutzer", "Gebe den Nutzer an den du bannen möchtest.", true)
+                .addOption(OptionType.INTEGER, "deldays", "Gebe an, wieviele Tage zurück sollen von dem User die nachrichten entfernt werden.", true)
+                .queue();
+        jda.upsertCommand("instantkick", "Kicke einen User.")
+                .addOption(OptionType.USER, "nutzer", "Gebe an, welcher Nutzer gekickt werden soll.", true)
+                .queue();
+        jda.upsertCommand("instanttimeout", "Timeoute einen User.")
+                .addOption(OptionType.USER, "nutzer", "Gebe an, welchen Nutzer du Timeouten willst.", true)
+                .addOption(OptionType.STRING, "dauer", "Und für wie lang.", true)
+                .queue();
     }
 }
