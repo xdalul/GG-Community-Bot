@@ -1,6 +1,8 @@
 package dev.dalol;
 
 import dev.dalol.commands.admin.*;
+import dev.dalol.commands.öffentlich.ChangeLog;
+import dev.dalol.commands.öffentlich.ChatGPT;
 import dev.dalol.commands.öffentlich.HelpCommand;
 import dev.dalol.commands.öffentlich.ReportCommand;
 import dev.dalol.listener.MessageEvent;
@@ -21,7 +23,7 @@ public class Main {
 
 
         JDA jda = JDABuilder.createDefault("")
-                .addEventListeners(new MessageEvent(), new ReportCommand(), new UnterbrechenCommand(), new RemoveLastMessageCommand(), new HelpCommand(), new AddRemoveRoleCMD(), new InstantKickBanTimeoutCMD(), new NickCommand())
+                .addEventListeners(new MessageEvent(), new ReportCommand(), new UnterbrechenCommand(), new RemoveLastMessageCommand(), new HelpCommand(), new AddRemoveRoleCMD(), new InstantKickBanTimeoutCMD(), new NickCommand(), new ChangeLog())
                 .setStatus(OnlineStatus.ONLINE)
                 .enableIntents(GatewayIntent.MESSAGE_CONTENT)
                 .build();
@@ -60,11 +62,14 @@ public class Main {
                 .addOption(OptionType.STRING, "dauer", "Und für wie lang.", true)
                 .queue();
         jda.upsertCommand("nick", "Bennene eine Nutzer hier auf dem Discord Server um.")
-                .addOption(OptionType.USER, "nutzer", "Den Nutzer, der den Namen ändern soll.")
-                .addOption(OptionType.STRING, "nickname", "Wie der Nutzer anschließend heißen Soll.")
+                .addOption(OptionType.USER, "nutzer", "Den Nutzer, der den Namen ändern soll.", true)
+                .addOption(OptionType.STRING, "nickname", "Wie der Nutzer anschließend heißen Soll.", true)
                 .queue();
         jda.upsertCommand("taschenrechner", "Ein Taschenrenchner. Was soll ich mehr sagen...")
-                .addOption(OptionType.STRING, "rechnung", "Deine Rechnung.")
+                .addOption(OptionType.STRING, "rechnung", "Deine Rechnung.", true)
+                .queue();
+        jda.upsertCommand("ask-gpt", "Frage ChatGPT eine Frage oder sonstiges :))")
+                .addOption(OptionType.STRING, "frage", "Deine Frage.", true)
                 .queue();
     }
 }
