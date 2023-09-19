@@ -24,11 +24,6 @@ public class Taschenrechner extends ListenerAdapter {
     }
 
     private double evaluateExpression(String expression) {
-        // Hier können Sie Code hinzufügen, um den Ausdruck auszuwerten.
-        // Zum Beispiel können Sie eine externe Mathematikbibliothek verwenden oder
-        // Ihren eigenen Code schreiben, um die Berechnungen durchzuführen.
-        // Für dieses Beispiel verwenden wir die eval-Methode in der JavaScript-Engine.
-
         javax.script.ScriptEngineManager mgr = new javax.script.ScriptEngineManager();
         javax.script.ScriptEngine engine = mgr.getEngineByName("JavaScript");
 
