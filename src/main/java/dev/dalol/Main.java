@@ -20,7 +20,7 @@ public class Main {
     public static void main(String[] args) {
 
 
-        JDA jda = JDABuilder.createDefault("MTExNzIwNDM1NjA2NDg4MjczOQ.GxxnDO.Ea51qmW8K799Ulh1ubIJvj5Xb1GnZrQcqTGosU")
+        JDA jda = JDABuilder.createDefault("")
                 .addEventListeners(new MessageEvent(), new ReportCommand(), new UnterbrechenCommand(), new RemoveLastMessageCommand(), new HelpCommand(), new AddRemoveRoleCMD(), new InstantKickBanTimeoutCMD(), new NickCommand())
                 .setStatus(OnlineStatus.ONLINE)
                 .enableIntents(GatewayIntent.MESSAGE_CONTENT)
