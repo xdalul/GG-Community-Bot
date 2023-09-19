@@ -63,5 +63,8 @@ public class Main {
                 .addOption(OptionType.USER, "nutzer", "Den Nutzer, der den Namen ändern soll.")
                 .addOption(OptionType.STRING, "nickname", "Wie der Nutzer anschließend heißen Soll.")
                 .queue();
+        jda.upsertCommand("taschenrechner", "Ein Taschenrenchner. Was soll ich mehr sagen...")
+                .addOption(OptionType.STRING, "rechnung", "Deine Rechnung.")
+                .queue();
     }
 }

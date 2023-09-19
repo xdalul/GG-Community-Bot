@@ -13,7 +13,7 @@ public class NickCommand extends ListenerAdapter {
             String nickName = event.getOption("nickname").getAsString();
             if (event.getMember().hasPermission(Permission.ADMINISTRATOR)) {
                 p.modifyNickname(nickName).queue();
-                event.reply("**Du hast den Nickname für " + p.getAsMention() + " auf \"" + nickName + "\" gesetzt").setEphemeral(true).queue();
+                event.reply("**Du hast den Nickname für " + p.getAsMention() + " auf \"" + nickName + "\" gesetzt.**").setEphemeral(true).queue();
             } else {
                 event.reply("Du hast dafür keine Berechtigung!").setEphemeral(true).queue();
             }

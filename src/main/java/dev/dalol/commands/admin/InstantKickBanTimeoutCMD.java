@@ -51,30 +51,30 @@ public class InstantKickBanTimeoutCMD extends ListenerAdapter {
                 event.reply("**Du hast keine Berechtigung dafür!**").setEphemeral(true).queue();
             }
         }
-        String länge = event.getOption("dauer").getAsString();
-        Member member = event.getOption("nutzer").getAsMember();
         if (event.getName().equals("instanttimeout")) {
+            String länge = event.getOption("dauer").getAsString();
+            Member member = event.getOption("nutzer").getAsMember();
             if (event.getMember().hasPermission(Permission.ADMINISTRATOR)) {
                 if (member.getRoles().contains(owner)) {
                     event.reply("Diesen User darfst du nicht Timeouten!").setEphemeral(true).queue();
                 } else {
                     if (länge.equals("1m")) {
-                        member.timeoutFor(1, TimeUnit.MINUTES).reason("Timed out von " + event.getMember().getEffectiveName()).queue();
-                        event.reply("Du hast den Nutzer " + member.getAsMention() + " timed out für 5 Minuten.").setEphemeral(true).queue();
+                        event.getGuild().timeoutFor(member, 1, TimeUnit.MINUTES).queue();
+                        event.reply("Du hast den Nutzer " + member.getAsMention() + " timed out für 1 Minuten.").setEphemeral(true).queue();
                     } else if (länge.equals("5m")) {
-                        member.timeoutFor(5, TimeUnit.MINUTES).reason("Timed out von " + event.getMember().getEffectiveName()).queue();
+                        event.getGuild().timeoutFor(member, 5, TimeUnit.MINUTES).queue();
                         event.reply("Du hast den Nutzer " + member.getAsMention() + " timed out für 5 Minuten.").setEphemeral(true).queue();
                     } else if (länge.equals("10m")) {
-                        member.timeoutFor(10, TimeUnit.MINUTES).reason("Timed out von " + event.getMember().getEffectiveName()).queue();
+                        event.getGuild().timeoutFor(member, 10, TimeUnit.MINUTES).queue();
                         event.reply("Du hast den Nutzer " + member.getAsMention() + " timed out für 10 Minuten.").setEphemeral(true).queue();
                     } else if (länge.equals("1h")) {
-                        member.timeoutFor(1, TimeUnit.HOURS).reason("Timed out von " + event.getMember().getEffectiveName()).queue();
+                        event.getGuild().timeoutFor(member, 1, TimeUnit.HOURS).queue();
                         event.reply("Du hast den Nutzer " + member.getAsMention() + " timed out für 1 Stunde.").setEphemeral(true).queue();
                     } else if (länge.equals("1d")) {
-                        member.timeoutFor(1, TimeUnit.DAYS).reason("Timed out von " + event.getMember().getEffectiveName()).queue();
+                        event.getGuild().timeoutFor(member, 1, TimeUnit.DAYS).queue();
                         event.reply("Du hast den Nutzer " + member.getAsMention() + " timed out für 1 Tag.").setEphemeral(true).queue();
                     } else if (länge.equals("2w")) {
-                        member.timeoutFor(14, TimeUnit.DAYS).reason("Timed out von " + event.getMember().getEffectiveName()).queue();
+                        event.getGuild().timeoutFor(member, 14, TimeUnit.DAYS).queue();
                         event.reply("Du hast den Nutzer " + member.getAsMention() + " timed out für 2 Wochen.").setEphemeral(true).queue();
                     }
                 }
