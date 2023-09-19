@@ -22,7 +22,7 @@ public class ReportCommand extends ListenerAdapter {
             builder.setFooter("GG-Community");
             builder.setTimestamp(Instant.now());
 
-
+            event.getGuild().getTextChannelById("1153680683630338151").sendMessageEmbeds(builder.build()).queue();
         }
     }
 }
