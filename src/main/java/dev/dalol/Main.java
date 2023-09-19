@@ -17,7 +17,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class Main {
-    private static String[] messages = {"OneWord","/help","& mehr"};
+    private static String[] messages = {"/changelog","OneWord","/help","& mehr"};
     private static int currentIndex = 0;
     public static void main(String[] args) {
 
