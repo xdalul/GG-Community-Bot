@@ -2,7 +2,6 @@ package dev.dalol;
 
 import dev.dalol.commands.admin.*;
 import dev.dalol.commands.öffentlich.ChangeLog;
-import dev.dalol.commands.öffentlich.ChatGPT;
 import dev.dalol.commands.öffentlich.HelpCommand;
 import dev.dalol.commands.öffentlich.ReportCommand;
 import dev.dalol.listener.MessageEvent;
