@@ -3,7 +3,6 @@ package dev.dalol.commands.admin;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.Role;
-import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
@@ -11,7 +10,7 @@ public class AddRemoveRoleCMD extends ListenerAdapter {
     @Override
     public void onSlashCommandInteraction(SlashCommandInteractionEvent event) {
         if (event.getName().equals("addrole")) {
-            Member member = (Member) event.getOption("nutzer").getAsUser();
+            Member member = event.getOption("nutzer").getAsMember();
             Role role = event.getOption("rolle").getAsRole();
             if (event.getMember().hasPermission(Permission.ADMINISTRATOR)) {
                 if (!member.getRoles().equals(role)) {

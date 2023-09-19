@@ -1,9 +1,8 @@
 package dev.dalol;
 
+import dev.dalol.commands.admin.*;
 import dev.dalol.commands.öffentlich.HelpCommand;
-import dev.dalol.commands.admin.RemoveLastMessageCommand;
 import dev.dalol.commands.öffentlich.ReportCommand;
-import dev.dalol.commands.admin.UnterbrechenCommand;
 import dev.dalol.listener.MessageEvent;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
@@ -21,8 +20,8 @@ public class Main {
     public static void main(String[] args) {
 
 
-        JDA jda = JDABuilder.createDefault("")
-                .addEventListeners(new MessageEvent(), new ReportCommand(), new UnterbrechenCommand(), new RemoveLastMessageCommand(), new HelpCommand())
+        JDA jda = JDABuilder.createDefault("MTExNzIwNDM1NjA2NDg4MjczOQ.GxxnDO.Ea51qmW8K799Ulh1ubIJvj5Xb1GnZrQcqTGosU")
+                .addEventListeners(new MessageEvent(), new ReportCommand(), new UnterbrechenCommand(), new RemoveLastMessageCommand(), new HelpCommand(), new AddRemoveRoleCMD(), new InstantKickBanTimeoutCMD(), new NickCommand())
                 .setStatus(OnlineStatus.ONLINE)
                 .enableIntents(GatewayIntent.MESSAGE_CONTENT)
                 .build();
@@ -36,13 +35,10 @@ public class Main {
         jda.upsertCommand("report", "Melde einen Fehler.")
                 .addOption(OptionType.STRING, "fehler", "Den Fehler den du gefunden hast.", true)
                 .queue();
-
         jda.upsertCommand("unterbrechen", "Unterbricht die Wörter-Reihe")
                 .addOption(OptionType.STRING, "grund", "Gebe einen Grund dazu", true)
                 .queue();
-
         jda.upsertCommand("removelastmessage", "Lösche die zuletzt gelöschte Nachricht vom Kanal & System").queue();
-
         jda.upsertCommand("help", "Hilfe zu OneWord.").queue();
         jda.upsertCommand("addrole", "Füge eine Rolle zu einen User hinzu.")
                 .addOption(OptionType.USER, "nutzer", "Der User, der eine Rolle hinzugefügt bekommen soll.", true)
@@ -62,6 +58,10 @@ public class Main {
         jda.upsertCommand("instanttimeout", "Timeoute einen User.")
                 .addOption(OptionType.USER, "nutzer", "Gebe an, welchen Nutzer du Timeouten willst.", true)
                 .addOption(OptionType.STRING, "dauer", "Und für wie lang.", true)
+                .queue();
+        jda.upsertCommand("nick", "Bennene eine Nutzer hier auf dem Discord Server um.")
+                .addOption(OptionType.USER, "nutzer", "Den Nutzer, der den Namen ändern soll.")
+                .addOption(OptionType.STRING, "nickname", "Wie der Nutzer anschließend heißen Soll.")
                 .queue();
     }
 }
