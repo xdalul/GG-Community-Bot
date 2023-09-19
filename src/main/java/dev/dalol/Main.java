@@ -71,5 +71,6 @@ public class Main {
         jda.upsertCommand("ask-gpt", "Frage ChatGPT eine Frage oder sonstiges :))")
                 .addOption(OptionType.STRING, "frage", "Deine Frage.", true)
                 .queue();
+        jda.upsertCommand("changelog", "Sehe den letzten Changelog vom letzten Update.").queue();
     }
 }
