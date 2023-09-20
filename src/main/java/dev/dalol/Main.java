@@ -70,5 +70,13 @@ public class Main {
         jda.upsertCommand("ask-gpt", "Frage ChatGPT eine Frage oder sonstiges :))")
                 .addOption(OptionType.STRING, "frage", "Deine Frage.", true)
                 .queue();
+        jda.upsertCommand("create-umfrage", "Erstelle eine Umfrage.")
+                .addOption(OptionType.STRING, "titel", "Title, von der Umfrage.", true)
+                .addOption(OptionType.STRING, "beschreibung", "Beschreibung, von der Umfrage.", true)
+                .addOption(OptionType.STRING, "antwort_1", "Erste Antwort", true)
+                .addOption(OptionType.STRING, "antwort_2", "Zweite Antwort", true)
+                .addOption(OptionType.STRING, "antwort_3", "Dritte Antwort")
+                .addOption(OptionType.STRING, "antwort_4", "Vierte Antwort")
+                .queue();
     }
 }
