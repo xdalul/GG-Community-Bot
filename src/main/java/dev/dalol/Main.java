@@ -21,7 +21,7 @@ public class Main {
     public static void main(String[] args) {
 
 
-        JDA jda = JDABuilder.createDefault("MTExNzIwNDM1NjA2NDg4MjczOQ.GszLs7.eEA80oXSVlRAf3FK5xLo_lKRXPqNoN072H86rs")
+        JDA jda = JDABuilder.createDefault("")
                 .addEventListeners(new MessageEvent(), new ReportCommand(), new UnterbrechenCommand(), new RemoveLastMessageCommand(), new HelpCommand(), new AddRemoveRoleCMD(), new InstantKickBanTimeoutCMD(), new NickCommand(), new ChangeLog(), new Umfrage())
                 .setStatus(OnlineStatus.ONLINE)
                 .enableIntents(GatewayIntent.MESSAGE_CONTENT)
