@@ -21,8 +21,8 @@ public class Main {
     public static void main(String[] args) {
 
 
-        JDA jda = JDABuilder.createDefault("")
-                .addEventListeners(new MessageEvent(), new ReportCommand(), new UnterbrechenCommand(), new RemoveLastMessageCommand(), new HelpCommand(), new AddRemoveRoleCMD(), new InstantKickBanTimeoutCMD(), new NickCommand(), new ChangeLog())
+        JDA jda = JDABuilder.createDefault("MTExNzIwNDM1NjA2NDg4MjczOQ.GszLs7.eEA80oXSVlRAf3FK5xLo_lKRXPqNoN072H86rs")
+                .addEventListeners(new MessageEvent(), new ReportCommand(), new UnterbrechenCommand(), new RemoveLastMessageCommand(), new HelpCommand(), new AddRemoveRoleCMD(), new InstantKickBanTimeoutCMD(), new NickCommand(), new ChangeLog(), new Umfrage())
                 .setStatus(OnlineStatus.ONLINE)
                 .enableIntents(GatewayIntent.MESSAGE_CONTENT)
                 .build();
@@ -73,10 +73,10 @@ public class Main {
         jda.upsertCommand("create-umfrage", "Erstelle eine Umfrage.")
                 .addOption(OptionType.STRING, "titel", "Title, von der Umfrage.", true)
                 .addOption(OptionType.STRING, "beschreibung", "Beschreibung, von der Umfrage.", true)
-                .addOption(OptionType.STRING, "antwort_1", "Erste Antwort", true)
-                .addOption(OptionType.STRING, "antwort_2", "Zweite Antwort", true)
-                .addOption(OptionType.STRING, "antwort_3", "Dritte Antwort")
-                .addOption(OptionType.STRING, "antwort_4", "Vierte Antwort")
+                .addOption(OptionType.STRING, "antwort_1", "Erste Antwort.", true)
+                .addOption(OptionType.STRING, "antwort_2", "Zweite Antwort.", true)
+                .addOption(OptionType.STRING, "antwort_3", "Dritte Antwort.", true)
+                .addOption(OptionType.STRING, "antwort_4", "Vierte Antwort.", true)
                 .queue();
     }
 }
