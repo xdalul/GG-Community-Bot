@@ -1,6 +1,7 @@
 package dev.dalol.commands.admin;
 
 import dev.dalol.listener.MessageEvent;
+import dev.dalol.util.Embeds;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
@@ -15,16 +16,7 @@ public class UnterbrechenCommand extends ListenerAdapter {
             String getGrund = event.getOption("grund").getAsString();
             if (event.getMember().hasPermission(Permission.ADMINISTRATOR)) {
                 event.reply("**Erfolgreich!**").setEphemeral(true).queue();
-
-                EmbedBuilder builder = new EmbedBuilder();
-
-                builder.setTitle("`📛` Die Wörter Reihe wurde unterbrochen!");
-                builder.setDescription(event.getMember().getAsMention() + " hat die Wörter Reihe unterbrochen. Grund » **" + getGrund + "**");
-                builder.setFooter("GG-Community");
-                builder.setTimestamp(Instant.now());
-                builder.setColor(0xf55142);
-
-                event.getChannel().sendMessageEmbeds(builder.build()).queue();
+                event.getChannel().sendMessageEmbeds(Embeds.unterbrechenEmbed(event.getMember(), getGrund).build()).queue();
                 MessageEvent.words.clear();
                 MessageEvent.currentIndex = 0;
                 MessageEvent.lastWord = "";

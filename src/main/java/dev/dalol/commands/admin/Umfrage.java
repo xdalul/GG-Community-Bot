@@ -34,8 +34,8 @@ public class Umfrage extends ListenerAdapter {
             String getDescription = event.getOption("beschreibung").getAsString();
             String getPointOne = event.getOption("antwort_1").getAsString();
             String getPointTwo = event.getOption("antwort_2").getAsString();
-            String getPointThree = Objects.requireNonNull(event.getOption("antwort_3")).getAsString();
-            String getPointFour = Objects.requireNonNull(event.getOption("antwort_4")).getAsString();
+            String getPointThree = event.getOption("antwort_3").getAsString();
+            String getPointFour = event.getOption("antwort_4").getAsString();
 
             Button one = Button.success(getPointOne, getPointOne);
             Button two = Button.success(getPointTwo, getPointTwo);
@@ -64,10 +64,10 @@ public class Umfrage extends ListenerAdapter {
             if (getPointThree == null) {
                 event.getChannel().sendMessageEmbeds(Embeds.umfrageEmbed(getTitle, getDescription, getPointOne, getPointTwo, getPointThree, getPointFour).build()).addActionRow(one, two).queue();
                 return;
-            } else {
+            } if (getPointThree != null) {
                 event.getChannel().sendMessageEmbeds(Embeds.umfrageEmbed(getTitle, getDescription, getPointOne, getPointTwo, getPointThree, getPointFour).build()).addActionRow(one, two, three).queue();
-            }
-            if (getPointFour != null) {
+                return;
+            } if (getPointFour != null) {
                 event.getChannel().sendMessageEmbeds(Embeds.umfrageEmbed(getTitle, getDescription, getPointOne, getPointTwo, getPointThree, getPointFour).build()).addActionRow(one, two, three, four).queue();
             }
         }

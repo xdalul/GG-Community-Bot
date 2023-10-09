@@ -1,6 +1,8 @@
 package dev.dalol.util;
 
+import dev.dalol.listener.MessageEvent;
 import net.dv8tion.jda.api.EmbedBuilder;
+import net.dv8tion.jda.api.entities.Member;
 
 import java.time.Instant;
 
@@ -50,6 +52,36 @@ public class Embeds {
                 builder.setFooter("GG-Community");
             }
         }
+
+        return builder;
+    }
+    public static EmbedBuilder errorEmbed(String fehler, Member member) {
+        EmbedBuilder builder = new EmbedBuilder();
+
+        builder.setTitle("Fehler!");
+        builder.setDescription(member + " - **" + fehler + "**");
+        builder.setColor(0xf55142);
+        builder.setFooter("GG-Community");
+        builder.setTimestamp(Instant.now());
+
+        return builder;
+    }
+    public static EmbedBuilder unterbrechenEmbed(Member member, String getGrund) {
+        EmbedBuilder builder = new EmbedBuilder();
+
+        builder.setTitle("`📛` Die Wörter Reihe wurde unterbrochen!");
+        builder.setDescription(member + " hat die Wörter Reihe unterbrochen. Grund » **" + getGrund + "**");
+        builder.setFooter("GG-Community");
+        builder.setTimestamp(Instant.now());
+        builder.setColor(0xf55142);
+
+        return builder;
+    }
+    public static EmbedBuilder removeLastMessage() {
+        EmbedBuilder builder = new EmbedBuilder();
+
+        builder.setTitle("Folgende Nachricht wurde erfolgreich aus dem System entfernt!");
+        builder.setDescription("\"" + MessageEvent.lastMessage + "\"");
 
         return builder;
     }
