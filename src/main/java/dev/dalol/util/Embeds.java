@@ -5,6 +5,7 @@ import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Member;
 
 import java.time.Instant;
+import java.util.List;
 
 public class Embeds {
 
@@ -77,11 +78,14 @@ public class Embeds {
 
         return builder;
     }
-    public static EmbedBuilder removeLastMessage() {
+    public static EmbedBuilder removeLastMessage(String lastMessage) {
         EmbedBuilder builder = new EmbedBuilder();
 
-        builder.setTitle("Folgende Nachricht wurde erfolgreich aus dem System entfernt!");
-        builder.setDescription("\"" + MessageEvent.lastMessage + "\"");
+        builder.setTitle("Folgende Nachricht wurde erfolgreich aus dem System entfernt:");
+        builder.setDescription("\"" + lastMessage + "\"");
+        builder.setFooter("GG-Community");
+        builder.setColor(0xe35d4b);
+        builder.setTimestamp(Instant.now());
 
         return builder;
     }

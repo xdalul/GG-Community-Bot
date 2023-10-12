@@ -1,11 +1,9 @@
 package dev.dalol.listener;
 
 import net.dv8tion.jda.api.EmbedBuilder;
-import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
-import java.text.MessageFormat;
 import java.time.Instant;
 import java.util.*;
 
@@ -16,8 +14,6 @@ public class MessageEvent extends ListenerAdapter {
     public static int currentIndex = 0;
     public static String lastWord = "";
     public static String lastMessage = "";
-    public static String getId = "";
-
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
 
