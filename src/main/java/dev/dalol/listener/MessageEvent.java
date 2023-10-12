@@ -14,15 +14,15 @@ public class MessageEvent extends ListenerAdapter {
     public static int currentIndex = 0;
     public static String lastWord = "";
     public static String lastMessage = "";
-    public static String getId = "";
-
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
 
-        if (!event.getChannel().getId().equals("")) return;
+        if (!event.getChannel().getId().equals("1151938627811688648")) return;
         if (event.getAuthor().isBot()) return;
 
         String messageContent = event.getMessage().getContentRaw();
+
+        if (messageContent.contains("*") || messageContent.contains("_")) return;
 
         if (messageContent.contains(".")) {
             if (words.size() > 7) {
