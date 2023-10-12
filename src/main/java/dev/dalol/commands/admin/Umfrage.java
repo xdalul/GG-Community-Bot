@@ -67,8 +67,10 @@ public class Umfrage extends ListenerAdapter {
             } if (getPointThree != null) {
                 event.getChannel().sendMessageEmbeds(Embeds.umfrageEmbed(getTitle, getDescription, getPointOne, getPointTwo, getPointThree, getPointFour).build()).addActionRow(one, two, three).queue();
                 return;
-            } if (getPointFour != null) {
+            }
+            if (getPointFour != null) {
                 event.getChannel().sendMessageEmbeds(Embeds.umfrageEmbed(getTitle, getDescription, getPointOne, getPointTwo, getPointThree, getPointFour).build()).addActionRow(one, two, three, four).queue();
+                return;
             }
         }
     }
