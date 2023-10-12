@@ -24,7 +24,7 @@ public class MessageEvent extends ListenerAdapter {
 
         String messageContent = event.getMessage().getContentRaw();
 
-        if (messageContent.endsWith("*")) return;
+        if (messageContent.contains("**") && messageContent.contains("__")) return;
 
         if (messageContent.contains(".")) {
             if (words.size() > 7) {
