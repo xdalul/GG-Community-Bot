@@ -1,5 +1,6 @@
 package dev.dalol.listener;
 
+import dev.dalol.commands.admin.EnableOneword;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
@@ -20,6 +21,7 @@ public class MessageEvent extends ListenerAdapter {
 
         if (!event.getChannel().getId().equals("1151938627811688648")) return;
         if (event.getAuthor().isBot()) return;
+        if (EnableOneword.oneword == false) return;
 
         String messageContent = event.getMessage().getContentRaw();
 
