@@ -14,6 +14,7 @@ public class MessageEvent extends ListenerAdapter {
     public static int currentIndex = 0;
     public static String lastWord = "";
     public static String lastMessage = "";
+
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
 
