@@ -78,5 +78,8 @@ public class Main {
                 .addOption(OptionType.STRING, "antwort_3", "Dritte Antwort.", true)
                 .addOption(OptionType.STRING, "antwort_4", "Vierte Antwort.", true)
                 .queue();
+
+        jda.upsertCommand("enable-oneword", "Schaltet OneWord aus/an")
+                .addOption(OptionType.BOOLEAN, "boolean", "true/false").queue();
     }
 }
