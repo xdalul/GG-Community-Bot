@@ -22,16 +22,21 @@ public class EnableOneword extends ListenerAdapter {
                 if (einwort == true) {
                     if (oneword == true) {
                         event.reply("OneWord läuft schon bereits!").setEphemeral(true).queue();
+                        return;
                     } else {
                         oneword = true;
                         event.reply("OneWord wurde nun gestartet.").setEphemeral(true).queue();
+                        return;
                     }
-                } if (einwort == false) {
+                }
+                if (einwort == false) {
                     if (oneword == false) {
-                        event.reply("OneWord läuft schon bereits!").setEphemeral(true).queue();
+                        event.reply("OneWord ist bereits aus!").setEphemeral(true).queue();
+                        return;
                     } else {
                         oneword = false;
                         event.reply("OneWord wurde nun beendet.").setEphemeral(true).queue();
+                        return;
                     }
                 }
             } else {

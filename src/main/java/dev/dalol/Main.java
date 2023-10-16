@@ -22,7 +22,7 @@ public class Main {
 
 
         JDA jda = JDABuilder.createDefault("")
-                .addEventListeners(new MessageEvent(), new ReportCommand(), new UnterbrechenCommand(), new RemoveLastMessageCommand(), new HelpCommand(), new AddRemoveRoleCMD(), new InstantKickBanTimeoutCMD(), new NickCommand(), new ChangeLog(), new Umfrage())
+                .addEventListeners(new MessageEvent(), new ReportCommand(), new UnterbrechenCommand(), new RemoveLastMessageCommand(), new HelpCommand(), new AddRemoveRoleCMD(), new InstantKickBanTimeoutCMD(), new NickCommand(), new ChangeLog(), new Umfrage(), new EnableOneword())
                 .setStatus(OnlineStatus.ONLINE)
                 .enableIntents(GatewayIntent.MESSAGE_CONTENT)
                 .build();
@@ -79,6 +79,7 @@ public class Main {
                 .addOption(OptionType.STRING, "antwort_4", "Vierte Antwort.", true)
                 .queue();
         jda.upsertCommand("enable-oneword", "OneWord ein- oder ausschalten.")
-                .addOption(OptionType.BOOLEAN, "boolean", "true / false", true);
+                .addOption(OptionType.BOOLEAN, "boolean", "true / false", true)
+                .queue();
     }
 }
