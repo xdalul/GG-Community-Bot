@@ -2,7 +2,6 @@ package dev.dalol;
 
 import dev.dalol.commands.admin.*;
 import dev.dalol.commands.öffentlich.ChangeLog;
-import dev.dalol.commands.öffentlich.ChatGPT;
 import dev.dalol.commands.öffentlich.HelpCommand;
 import dev.dalol.commands.öffentlich.ReportCommand;
 import dev.dalol.listener.MessageEvent;
@@ -17,13 +16,13 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class Main {
-    private static String[] messages = {"/changelog","OneWord","/help","& mehr"};
+    private static String[] messages = {"OneWord","/help","& mehr"};
     private static int currentIndex = 0;
     public static void main(String[] args) {
 
 
         JDA jda = JDABuilder.createDefault("")
-                .addEventListeners(new MessageEvent(), new ReportCommand(), new UnterbrechenCommand(), new RemoveLastMessageCommand(), new HelpCommand(), new AddRemoveRoleCMD(), new InstantKickBanTimeoutCMD(), new NickCommand(), new ChangeLog())
+                .addEventListeners(new MessageEvent(), new ReportCommand(), new UnterbrechenCommand(), new RemoveLastMessageCommand(), new HelpCommand(), new AddRemoveRoleCMD(), new InstantKickBanTimeoutCMD(), new NickCommand(), new ChangeLog(), new Umfrage())
                 .setStatus(OnlineStatus.ONLINE)
                 .enableIntents(GatewayIntent.MESSAGE_CONTENT)
                 .build();
@@ -71,6 +70,13 @@ public class Main {
         jda.upsertCommand("ask-gpt", "Frage ChatGPT eine Frage oder sonstiges :))")
                 .addOption(OptionType.STRING, "frage", "Deine Frage.", true)
                 .queue();
-        jda.upsertCommand("changelog", "Sehe den letzten Changelog vom letzten Update.").queue();
+        jda.upsertCommand("create-umfrage", "Erstelle eine Umfrage.")
+                .addOption(OptionType.STRING, "titel", "Title, von der Umfrage.", true)
+                .addOption(OptionType.STRING, "beschreibung", "Beschreibung, von der Umfrage.", true)
+                .addOption(OptionType.STRING, "antwort_1", "Erste Antwort.", true)
+                .addOption(OptionType.STRING, "antwort_2", "Zweite Antwort.", true)
+                .addOption(OptionType.STRING, "antwort_3", "Dritte Antwort.", true)
+                .addOption(OptionType.STRING, "antwort_4", "Vierte Antwort.", true)
+                .queue();
     }
 }
