@@ -8,6 +8,9 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class SpamCommand extends ListenerAdapter {
+
+    // ----> Mach ich wann anders...
+
     @Override
     public void onSlashCommandInteraction(SlashCommandInteractionEvent event) {
         if (event.getName().equals("spam")) {

@@ -1,5 +1,6 @@
 package dev.dalol.commands.admin;
 
+import dev.dalol.util.Rollen;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
@@ -14,7 +15,7 @@ public class botMaintenance extends ListenerAdapter {
         boolean maintenanceop = event.getOption("boolean").getAsBoolean();
         Member m = event.getMember();
 
-        if (m.hasPermission(Permission.ADMINISTRATOR)) {
+        if (m.getRoles().contains(Rollen.getModerationsRoles(event.getGuild()))) {
             if (maintenanceop == true) {
                 if (maintenanceop == true) {
                     event.reply("Die Bot-Maintenance ist bereits gesetzt!").setEphemeral(true).queue();

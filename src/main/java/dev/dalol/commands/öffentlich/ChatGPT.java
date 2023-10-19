@@ -11,7 +11,7 @@ import java.io.IOException;
 
 public class ChatGPT extends ListenerAdapter {
 
-    //----> Muss gefixt werden
+    //----> Discontinued
     private static String apiKey = "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";
     @Override
     public void onSlashCommandInteraction(SlashCommandInteractionEvent event) {
