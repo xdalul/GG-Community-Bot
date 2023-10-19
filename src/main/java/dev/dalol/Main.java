@@ -81,5 +81,7 @@ public class Main {
 
         jda.upsertCommand("enable-oneword", "Schaltet OneWord aus/an")
                 .addOption(OptionType.BOOLEAN, "boolean", "true/false", true).queue();
+        jda.upsertCommand("bot-maintenance", "Schaltet die Bot-Wartungsarbeiten an/aus")
+                .addOption(OptionType.BOOLEAN, "boolean", "true/false", true).queue();
     }
 }
