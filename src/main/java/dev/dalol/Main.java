@@ -26,11 +26,17 @@ public class Main {
                 .setStatus(OnlineStatus.ONLINE)
                 .enableIntents(GatewayIntent.MESSAGE_CONTENT)
                 .build();
-        new Timer().schedule(new TimerTask(){
-            public void run(){
-                jda.getPresence().setActivity(Activity.playing(messages[currentIndex]));
-                currentIndex=(currentIndex+1)%messages.length;
-            }},0,3_000);
+        if (botMaintenance.maintenance == false) {
+            new Timer().schedule(new TimerTask() {
+                public void run() {
+                    jda.getPresence().setActivity(Activity.playing(messages[currentIndex]));
+                    currentIndex = (currentIndex + 1) % messages.length;
+                }
+            }, 0, 3_000);
+        } else {
+            jda.getPresence().setActivity(Activity.playing("Unter Wartungsarbeiten"));
+            jda.getPresence().setStatus(OnlineStatus.IDLE);
+        }
 
 
         jda.upsertCommand("report", "Melde einen Fehler.")
