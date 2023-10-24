@@ -60,7 +60,7 @@ public class Embeds {
         EmbedBuilder builder = new EmbedBuilder();
 
         builder.setTitle("Fehler!");
-        builder.setDescription(member + " - **" + fehler + "**");
+        builder.setDescription(member.getEffectiveName() + " - **" + fehler + "**");
         builder.setColor(0xf55142);
         builder.setFooter("GG-Community");
         builder.setTimestamp(Instant.now());
@@ -71,7 +71,7 @@ public class Embeds {
         EmbedBuilder builder = new EmbedBuilder();
 
         builder.setTitle("`📛` Die Wörter Reihe wurde unterbrochen!");
-        builder.setDescription(member + " hat die Wörter Reihe unterbrochen. Grund » **" + getGrund + "**");
+        builder.setDescription(member.getEffectiveName() + " hat die Wörter Reihe unterbrochen. Grund » **" + getGrund + "**");
         builder.setFooter("GG-Community");
         builder.setTimestamp(Instant.now());
         builder.setColor(0xf55142);
