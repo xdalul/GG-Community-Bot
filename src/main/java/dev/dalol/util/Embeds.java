@@ -89,4 +89,16 @@ public class Embeds {
 
         return builder;
     }
+
+    public static EmbedBuilder ErrorEmbed(String s) {
+        EmbedBuilder builder = new EmbedBuilder();
+
+        builder.setTitle("`📛` Fehler");
+        builder.setDescription("Folgender Fehler ist aufgetreten: **" + s + "**");
+        builder.setFooter("GG-Community");
+        builder.setColor(0xe35d4b);
+        builder.setTimestamp(Instant.now());
+
+        return builder;
+    }
 }

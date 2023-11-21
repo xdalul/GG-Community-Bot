@@ -19,7 +19,7 @@ public class MessageEvent extends ListenerAdapter {
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
 
-        if (!event.getChannel().getId().equals("1151867308789211166")) return;
+        if (!event.getChannel().getId().equals("1151938627811688648")) return;
         if (event.getAuthor().isBot()) return;
         if (!EnableOneword.oneword) return;
 

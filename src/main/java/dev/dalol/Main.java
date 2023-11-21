@@ -21,7 +21,7 @@ public class Main {
     public static void main(String[] args) {
 
 
-        JDA jda = JDABuilder.createDefault("")
+        JDA jda = JDABuilder.createDefault("MTExNzIwNDM1NjA2NDg4MjczOQ.G_3TSt.XOWZIxjeloqvIZkUOhZWjauGYRlpmD88vzlleA")
                 .addEventListeners(new MessageEvent(), new ReportCommand(), new UnterbrechenCommand(), new RemoveLastMessageCommand(), new HelpCommand(), new AddRemoveRoleCMD(), new InstantKickBanTimeoutCMD(), new NickCommand(), new ChangeLog(), new Umfrage(), new EnableOneword())
                 .setStatus(OnlineStatus.ONLINE)
                 .enableIntents(GatewayIntent.MESSAGE_CONTENT)
@@ -80,6 +80,12 @@ public class Main {
                 .queue();
 
         jda.upsertCommand("enable-oneword", "Schaltet OneWord aus/an")
-                .addOption(OptionType.BOOLEAN, "boolean", "true/false").queue();
+                .addOption(OptionType.BOOLEAN, "boolean", "true/false", true).queue();
+
+        jda.upsertCommand("maintenance", "Warungen")
+                .addOption(OptionType.BOOLEAN , "boolean", "true/false", true)
+                .addOption(OptionType.CHANNEL, "anounce-kanal", "Kanal bestimmen, wo es angekündigt wird.", true)
+                .addOption(OptionType.STRING, "grund", "Bestimme einen Grund.", true)
+                .queue();
     }
 }
