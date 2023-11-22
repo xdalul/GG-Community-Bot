@@ -1,5 +1,6 @@
 package dev.dalol.util;
 
+import dev.dalol.commands.admin.EnableMaintenance;
 import dev.dalol.listener.MessageEvent;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Member;
@@ -95,6 +96,18 @@ public class Embeds {
 
         builder.setTitle("`📛` Fehler");
         builder.setDescription("Folgender Fehler ist aufgetreten: **" + s + "**");
+        builder.setFooter("GG-Community");
+        builder.setColor(0xe35d4b);
+        builder.setTimestamp(Instant.now());
+
+        return builder;
+    }
+
+    public static EmbedBuilder MaintenanceEmbed() {
+        EmbedBuilder builder = new EmbedBuilder();
+
+        builder.setTitle("`🚧` Wartungsarbeiten");
+        builder.setDescription("> Aktuell finden Wartungsarbeiten auf dem Bot statt. Wir bitten um geduld, bis der Bot wieder Online ist.\n> Grund: **" + EnableMaintenance.reason + "**");
         builder.setFooter("GG-Community");
         builder.setColor(0xe35d4b);
         builder.setTimestamp(Instant.now());

@@ -1,6 +1,8 @@
 package dev.dalol.listener;
 
+import dev.dalol.commands.admin.EnableMaintenance;
 import dev.dalol.commands.admin.EnableOneword;
+import dev.dalol.util.Embeds;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
@@ -19,7 +21,11 @@ public class MessageEvent extends ListenerAdapter {
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
 
-        if (!event.getChannel().getId().equals("1151938627811688648")) return;
+        if (!event.getChannel().getId().equals("1151867308789211166")) return;
+        if (EnableMaintenance.maintenance.equals(true)) {
+            event.getMessage().delete().queue();
+            event.getChannel().sendMessageEmbeds(Embeds.MaintenanceEmbed().build()).addContent(event.getMember().getAsMention()).queue();
+        }
         if (event.getAuthor().isBot()) return;
         if (!EnableOneword.oneword) return;
 
