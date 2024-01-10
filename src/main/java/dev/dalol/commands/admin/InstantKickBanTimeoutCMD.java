@@ -1,6 +1,5 @@
 package dev.dalol.commands.admin;
 
-import dev.dalol.util.Rollen;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.Role;
@@ -27,21 +26,21 @@ public class InstantKickBanTimeoutCMD extends ListenerAdapter {
         if (event.getName().equals("instantban")) {
             Member member = event.getOption("nutzer").getAsMember();
             Integer deldays = event.getOption("deldays").getAsInt();
-            if (event.getMember().getRoles().contains(Rollen.getModerationsRoles(event.getGuild()))) {
+            if (event.getMember().hasPermission(Permission.ADMINISTRATOR)) {
                 if (member.getRoles().contains(owner)) {
                     event.reply("Diesen User darfst du nicht bannen!").setEphemeral(true).queue();
                 } else {
                     member.ban(deldays, TimeUnit.DAYS).reason("Gebannt von " + event.getMember().getEffectiveName()).queue();
                     event.reply("**Du hast erfolgreich " + member.getEffectiveName() + " gebannt.**").setEphemeral(true).queue();
                 }
-           } else {
+            } else {
                 event.reply("**Du hast keine Berechtigung dafür!**").setEphemeral(true).queue();
             }
         }
         if (event.getName().equals("instantkick")) {
             Member member = event.getOption("nutzer").getAsMember();
 
-            if (event.getMember().getRoles().contains(Rollen.getAllTeamRoles(event.getGuild()))) {
+            if (event.getMember().hasPermission(Permission.ADMINISTRATOR)) {
                 if (member.getRoles().contains(owner)) {
                     event.reply("Diesen User darfst du nicht kicken!").setEphemeral(true).queue();
                 } else {
@@ -55,7 +54,7 @@ public class InstantKickBanTimeoutCMD extends ListenerAdapter {
         if (event.getName().equals("instanttimeout")) {
             String länge = event.getOption("dauer").getAsString();
             Member member = event.getOption("nutzer").getAsMember();
-            if (event.getMember().getRoles().contains(Rollen.getAllTeamRoles(event.getGuild()))) {
+            if (event.getMember().hasPermission(Permission.ADMINISTRATOR)) {
                 if (member.getRoles().contains(owner)) {
                     event.reply("Diesen User darfst du nicht Timeouten!").setEphemeral(true).queue();
                 } else {

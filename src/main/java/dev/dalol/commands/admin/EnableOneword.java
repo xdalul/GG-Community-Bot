@@ -1,6 +1,5 @@
 package dev.dalol.commands.admin;
 
-import dev.dalol.util.Rollen;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
@@ -19,7 +18,7 @@ public class EnableOneword extends ListenerAdapter {
         if (event.getName().equals("enable-oneword")) {
             Member p = event.getMember();
             boolean einwort = event.getOption("boolean").getAsBoolean();
-            if (event.getMember().getRoles().contains(Rollen.getModerationsRoles(event.getGuild()))) {
+            if (event.getMember().hasPermission(Permission.ADMINISTRATOR)) {
                 if (einwort == true) {
                     if (oneword == true) {
                         event.reply("OneWord läuft schon bereits!").setEphemeral(true).queue();
