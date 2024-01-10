@@ -14,6 +14,8 @@ import java.util.Objects;
 
 public class Umfrage extends ListenerAdapter {
 
+    // ----> Not Releasing yet.
+
     private static List<Member> gevotedOne = new ArrayList<>();
     private static List<Member> gevotedTwo = new ArrayList<>();
     private static List<Member> gevotedThree = new ArrayList<>();

@@ -22,15 +22,21 @@ public class Main {
 
 
         JDA jda = JDABuilder.createDefault("")
-                .addEventListeners(new MessageEvent(), new ReportCommand(), new UnterbrechenCommand(), new RemoveLastMessageCommand(), new HelpCommand(), new AddRemoveRoleCMD(), new InstantKickBanTimeoutCMD(), new NickCommand(), new ChangeLog(), new Umfrage(), new EnableOneword())
+                .addEventListeners(new MessageEvent(), new ReportCommand(), new UnterbrechenCommand(), new RemoveLastMessageCommand(), new HelpCommand(), new AddRemoveRoleCMD(), new InstantKickBanTimeoutCMD(), new NickCommand(), new ChangeLog(), new Umfrage(), new EnableOneword(), new botMaintenance())
                 .setStatus(OnlineStatus.ONLINE)
                 .enableIntents(GatewayIntent.MESSAGE_CONTENT)
                 .build();
-        new Timer().schedule(new TimerTask(){
-            public void run(){
-                jda.getPresence().setActivity(Activity.playing(messages[currentIndex]));
-                currentIndex=(currentIndex+1)%messages.length;
-            }},0,3_000);
+        if (botMaintenance.maintenance == false) {
+            new Timer().schedule(new TimerTask() {
+                public void run() {
+                    jda.getPresence().setActivity(Activity.playing(messages[currentIndex]));
+                    currentIndex = (currentIndex + 1) % messages.length;
+                }
+            }, 0, 3_000);
+        } else {
+            jda.getPresence().setActivity(Activity.playing("Unter Wartungsarbeiten"));
+            jda.getPresence().setStatus(OnlineStatus.IDLE);
+        }
 
 
         jda.upsertCommand("report", "Melde einen Fehler.")
@@ -82,10 +88,7 @@ public class Main {
         jda.upsertCommand("enable-oneword", "Schaltet OneWord aus/an")
                 .addOption(OptionType.BOOLEAN, "boolean", "true/false", true).queue();
 
-        jda.upsertCommand("maintenance", "Warungen")
-                .addOption(OptionType.BOOLEAN , "boolean", "true/false", true)
-                .addOption(OptionType.CHANNEL, "anounce-kanal", "Kanal bestimmen, wo es angekündigt wird.", true)
-                .addOption(OptionType.STRING, "grund", "Bestimme einen Grund.", true)
-                .queue();
+        jda.upsertCommand("bot-maintenance", "Schaltet die Bot-Wartungsarbeiten an/aus")
+                .addOption(OptionType.BOOLEAN, "boolean", "true/false", true).queue();
     }
 }

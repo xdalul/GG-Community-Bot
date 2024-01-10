@@ -1,5 +1,6 @@
 package dev.dalol.commands.admin;
 
+import dev.dalol.util.Rollen;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.Role;
@@ -12,7 +13,7 @@ public class AddRemoveRoleCMD extends ListenerAdapter {
         if (event.getName().equals("addrole")) {
             Member member = event.getOption("nutzer").getAsMember();
             Role rolle = event.getOption("rolle").getAsRole();
-            if (event.getMember().hasPermission(Permission.ADMINISTRATOR)) {
+            if (event.getMember().getRoles().contains(Rollen.getModerationsRoles(event.getGuild()))) {
                 if (!member.getRoles().contains(rolle)) {
                     event.getGuild().addRoleToMember(member, rolle).queue();
                     event.reply("**Du hast dem User __" + member.getAsMention() + "__ die Rolle  \"" + rolle.getAsMention() + "\" geaddet.**").setEphemeral(true).queue();
@@ -24,7 +25,7 @@ public class AddRemoveRoleCMD extends ListenerAdapter {
         if (event.getName().equals("removerole")) {
             Member member = event.getOption("nutzer").getAsMember();
             Role role = event.getOption("rolle").getAsRole();
-            if (event.getMember().hasPermission(Permission.ADMINISTRATOR)) {
+            if (event.getMember().getRoles().contains(Rollen.getModerationsRoles(event.getGuild()))) {
                 if (member.getRoles().contains(role)) {
                     event.getGuild().removeRoleFromMember(member, role).queue();
                     event.reply("**Du hast dem User __" + member.getAsMention() + "__ die Rolle  \"" + role.getAsMention() + "\" entfernt.**").setEphemeral(true).queue();

@@ -1,5 +1,6 @@
 package dev.dalol.commands.admin;
 
+import dev.dalol.util.Rollen;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
@@ -11,7 +12,7 @@ public class NickCommand extends ListenerAdapter {
         if (event.getName().equals("nick")) {
             Member p = event.getOption("nutzer").getAsMember();
             String nickName = event.getOption("nickname").getAsString();
-            if (event.getMember().hasPermission(Permission.ADMINISTRATOR)) {
+            if (event.getMember().getRoles().contains(Rollen.getAllTeamRoles(event.getGuild()))) {
                 p.modifyNickname(nickName).queue();
                 event.reply("**Du hast den Nickname für " + p.getAsMention() + " auf \"" + nickName + "\" gesetzt.**").setEphemeral(true).queue();
             } else {

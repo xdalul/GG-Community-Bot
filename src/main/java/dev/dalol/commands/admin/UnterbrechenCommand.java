@@ -2,6 +2,7 @@ package dev.dalol.commands.admin;
 
 import dev.dalol.listener.MessageEvent;
 import dev.dalol.util.Embeds;
+import dev.dalol.util.Rollen;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
@@ -14,7 +15,7 @@ public class UnterbrechenCommand extends ListenerAdapter {
     public void onSlashCommandInteraction(SlashCommandInteractionEvent event) {
         if (event.getName().equals("unterbrechen")) {
             String getGrund = event.getOption("grund").getAsString();
-            if (event.getMember().hasPermission(Permission.ADMINISTRATOR)) {
+            if (event.getMember().getRoles().contains(Rollen.getModerationsRolesBegrenzt(event.getGuild()))) {
                 event.reply("**Erfolgreich!**").setEphemeral(true).queue();
                 event.getChannel().sendMessageEmbeds(Embeds.unterbrechenEmbed(event.getMember(), getGrund).build()).queue();
                 MessageEvent.words.clear();
