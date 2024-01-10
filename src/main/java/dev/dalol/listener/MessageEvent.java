@@ -1,6 +1,8 @@
 package dev.dalol.listener;
 
+import dev.dalol.commands.admin.EnableMaintenance;
 import dev.dalol.commands.admin.EnableOneword;
+import dev.dalol.util.Embeds;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
@@ -20,14 +22,51 @@ public class MessageEvent extends ListenerAdapter {
     public void onMessageReceived(MessageReceivedEvent event) {
 
         if (!event.getChannel().getId().equals("1151867308789211166")) return;
+        if (EnableMaintenance.maintenance.equals(true)) {
+            event.getMessage().delete().queue();
+            event.getChannel().sendMessageEmbeds(Embeds.MaintenanceEmbed().build()).addContent(event.getMember().getAsMention()).queue();
+        }
         if (event.getAuthor().isBot()) return;
-        if (EnableOneword.oneword == false) return;
+        if (!EnableOneword.oneword) return;
 
         String messageContent = event.getMessage().getContentRaw();
 
         if (messageContent.contains("*") || messageContent.contains("_")) return;
 
-        if (messageContent.contains(".")) {
+        if (messageContent.contains(".") || messageContent.contains("!") || messageContent.contains("?")) {
+            if (words.size() > 3) {
+                lastWord = messageContent;
+                words.add(lastWord);
+                String sentence = String.join(" ", words);
+
+                System.out.println("[DEBUG] " + sentence);
+
+                EmbedBuilder builder = new EmbedBuilder();
+
+                builder.setTitle("`👀` Euer Satz ist vollendet!");
+                builder.setDescription("Mal sehen was ihr veranstaltet habt:\n\n**" + sentence + "**\n\n*Bitte hier drunter einen Thread erstellen, falls ihr euch über den Satz lustig machen wollt...*");
+                builder.setFooter("GG-Community");
+                builder.setTimestamp(Instant.now());
+                builder.setColor(0x8dfc32);
+
+                event.getChannel().sendMessageEmbeds(builder.build()).queue();
+                words.clear();
+                currentIndex = 0;
+                lastWord = "";
+            } else {
+                EmbedBuilder builder = new EmbedBuilder();
+                event.getMessage().delete().queue();
+
+                builder.setTitle("`❌` Ihr müsst mind. 4 Wörter schreiben.");
+                builder.setDescription("*Falls dies ein Fehler ist, bitte </report:1151951919137427466> machen ;p* (Ihr könnt hier übrigens noch weiter schreiben, eure Wörter Reihe wurde dadurch nicht unterbrochen!)");
+                builder.setFooter("GG-Community");
+                builder.setColor(0xf55142);
+                builder.setTimestamp(Instant.now());
+                System.out.println(event.getMember().getEffectiveName() + "hat vor 8 Wörtern bereits versucht, einen Satz zu vervollständingen - " + event.getMessage().getContentRaw());
+
+                event.getChannel().sendMessageEmbeds(builder.build()).addContent(event.getMember().getAsMention()).queue();
+            }
+        } else if (messageContent.contains("!")) {
             if (words.size() > 7) {
                 lastWord = messageContent;
                 words.add(lastWord);
@@ -51,7 +90,7 @@ public class MessageEvent extends ListenerAdapter {
                 EmbedBuilder builder = new EmbedBuilder();
                 event.getMessage().delete().queue();
 
-                builder.setTitle("`❌` Ihr müsst mind. 8 Wörter schreiben.");
+                builder.setTitle("`❌` Ihr müsst mind. 4 Wörter schreiben.");
                 builder.setDescription("*Falls dies ein Fehler ist, bitte </report:1151951919137427466> machen ;p* (Ihr könnt hier übrigens noch weiter schreiben, eure Wörter Reihe wurde dadurch nicht unterbrochen!)");
                 builder.setFooter("GG-Community");
                 builder.setColor(0xf55142);
@@ -68,7 +107,8 @@ public class MessageEvent extends ListenerAdapter {
                     words.add(messageContent);
                     System.out.println(event.getMember().getEffectiveName() + " - " + messageContent);
                     currentIndex = (int) event.getMember().getUser().getIdLong();
-                } if (currentIndex > event.getMember().getUser().getIdLong()) {
+                }
+                if (currentIndex > event.getMember().getUser().getIdLong()) {
                     event.getChannel().sendMessage("Test").queue();
                 }
             } else {
