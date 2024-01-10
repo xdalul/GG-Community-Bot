@@ -1,6 +1,5 @@
 package dev.dalol.util;
 
-import dev.dalol.commands.admin.EnableMaintenance;
 import dev.dalol.listener.MessageEvent;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Member;
@@ -61,7 +60,7 @@ public class Embeds {
         EmbedBuilder builder = new EmbedBuilder();
 
         builder.setTitle("Fehler!");
-        builder.setDescription(member.getEffectiveName() + " - **" + fehler + "**");
+        builder.setDescription(member + " - **" + fehler + "**");
         builder.setColor(0xf55142);
         builder.setFooter("GG-Community");
         builder.setTimestamp(Instant.now());
@@ -72,7 +71,7 @@ public class Embeds {
         EmbedBuilder builder = new EmbedBuilder();
 
         builder.setTitle("`📛` Die Wörter Reihe wurde unterbrochen!");
-        builder.setDescription(member.getEffectiveName() + " hat die Wörter Reihe unterbrochen. Grund » **" + getGrund + "**");
+        builder.setDescription(member + " hat die Wörter Reihe unterbrochen. Grund » **" + getGrund + "**");
         builder.setFooter("GG-Community");
         builder.setTimestamp(Instant.now());
         builder.setColor(0xf55142);
@@ -84,30 +83,6 @@ public class Embeds {
 
         builder.setTitle("Folgende Nachricht wurde erfolgreich aus dem System entfernt:");
         builder.setDescription("\"" + lastMessage + "\"");
-        builder.setFooter("GG-Community");
-        builder.setColor(0xe35d4b);
-        builder.setTimestamp(Instant.now());
-
-        return builder;
-    }
-
-    public static EmbedBuilder ErrorEmbed(String s) {
-        EmbedBuilder builder = new EmbedBuilder();
-
-        builder.setTitle("`📛` Fehler");
-        builder.setDescription("Folgender Fehler ist aufgetreten: **" + s + "**");
-        builder.setFooter("GG-Community");
-        builder.setColor(0xe35d4b);
-        builder.setTimestamp(Instant.now());
-
-        return builder;
-    }
-
-    public static EmbedBuilder MaintenanceEmbed() {
-        EmbedBuilder builder = new EmbedBuilder();
-
-        builder.setTitle("`🚧` Wartungsarbeiten");
-        builder.setDescription("> Aktuell finden Wartungsarbeiten auf dem Bot statt. Wir bitten um geduld, bis der Bot wieder Online ist.\n> Grund: **" + EnableMaintenance.reason + "**");
         builder.setFooter("GG-Community");
         builder.setColor(0xe35d4b);
         builder.setTimestamp(Instant.now());
